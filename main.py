@@ -37,7 +37,7 @@ def update_wgg():
     time.sleep(random.randint(1, 6) * 10)
 
 
-def answer():
+def answer(): # not finished
     driver.get('https://www.wg-gesucht.de/nachrichten.html')
 
 
