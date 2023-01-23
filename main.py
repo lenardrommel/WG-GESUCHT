@@ -27,11 +27,14 @@ time.sleep(1)
 
 
 def update_wgg():
-    driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer").click()
+    if driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer") == driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer"):
+        driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer").click()
     time.sleep(5)
-    driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos").click()
+    if driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos") == driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos"):
+        driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos").click()
     time.sleep(random.randint(1, 4))
-    driver.find_element(By.ID, "update_offer_nav").click()
+    if driver.find_element(By.ID, "update_offer_nav") == driver.find_element(By.ID, "update_offer_nav"):
+        driver.find_element(By.ID, "update_offer_nav").click()
     time.sleep(30)
     driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
     time.sleep(random.randint(1, 6) * 10)
@@ -41,8 +44,8 @@ def answer(): # not finished
     driver.get('https://www.wg-gesucht.de/nachrichten.html')
 
 
-
 while True:
+    print(time.time(), 'at', time.localtime()[3], 'h', time.localtime()[4], 'min')
     update_wgg()
     time.sleep(4)
-    print(time.time())
+    print(time.time(), 'at', time.localtime()[3],'h', time.localtime()[4], 'min')
