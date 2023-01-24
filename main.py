@@ -37,7 +37,7 @@ def errorExit():
 
 def exit():
     driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
-    time.sleep(random.randint(1, 6) * 10)
+    time.sleep(random.randint(1, 6) * 9)
 
 
 def update_wgg():
@@ -54,8 +54,7 @@ def update_wgg():
         errorExit()
     try:
         driver.find_element(By.ID, "update_offer_nav").click()
-        #time.sleep(30)
-        time.sleep(2)
+        time.sleep(30)
     except:
         errorExit()
 
@@ -67,7 +66,7 @@ def answer(): # not finished
 
 
 while True:
-    print(time.time(), 'at', time.localtime()[3], 'h', time.localtime()[4], 'min')
     update_wgg()
-    time.sleep(4)
-    print(time.time(), 'at', time.localtime()[3],'h', time.localtime()[4], 'min')
+    print('Last actualization at', time.localtime()[3], 'h', time.localtime()[4], 'min')
+    time.sleep(20)
+    
