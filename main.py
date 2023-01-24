@@ -3,6 +3,9 @@ import numpy as np
 import time
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 # define access data
@@ -26,18 +29,37 @@ driver.find_element(By.ID, "login_submit").click()
 time.sleep(1)
 
 
-def update_wgg():
-    if driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer") == driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer"):
-        driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer").click()
-    time.sleep(5)
-    if driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos") == driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos"):
-        driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos").click()
-    time.sleep(random.randint(1, 4))
-    if driver.find_element(By.ID, "update_offer_nav") == driver.find_element(By.ID, "update_offer_nav"):
-        driver.find_element(By.ID, "update_offer_nav").click()
-    time.sleep(30)
+def errorExit():
+    print('Element could not be found. Try again.')
+    driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
+    time.sleep(random.randint(2, 4))
+
+
+def exit():
     driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
     time.sleep(random.randint(1, 6) * 10)
+
+
+def update_wgg():
+    time.sleep(1)
+    try:
+        driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer").click()
+        time.sleep(1)
+    except NoSuchElementException:
+        errorExit()
+    try:
+        driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos").click()
+        time.sleep(random.randint(1, 4))
+    except NoSuchElementException:
+        errorExit()
+    try:
+        driver.find_element(By.ID, "update_offer_nav").click()
+        #time.sleep(30)
+        time.sleep(2)
+    except:
+        errorExit()
+
+    exit()
 
 
 def answer(): # not finished
