@@ -29,44 +29,62 @@ driver.find_element(By.ID, "login_submit").click()
 time.sleep(1)
 
 
+def reopenBrowser():
+    driver = webdriver.Firefox()
+    driver.maximize_window()
+    driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
+    update_wgg()
+
+
 def errorExit():
     print('Element could not be found. Try again.')
-    driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
+    try:
+        driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
+    except:
+        reopenBrowser()
     time.sleep(random.randint(2, 4))
 
 
 def exit():
     driver.get('https://www.wg-gesucht.de/meine-anzeigen.html')
-    time.sleep(random.randint(1, 6) * 9)
+    time.sleep(random.randint(1, 6))
 
 
 def update_wgg():
     time.sleep(1)
     try:
         driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer").click()
-        time.sleep(1)
+        time.sleep(10)
     except NoSuchElementException:
         errorExit()
     try:
         driver.find_element(By.LINK_TEXT, "Bearbeiten + Fotos").click()
-        time.sleep(random.randint(1, 4))
+        time.sleep(random.randint(1, 4) * 9)
     except NoSuchElementException:
         errorExit()
     try:
         driver.find_element(By.ID, "update_offer_nav").click()
-        time.sleep(30)
+        time.sleep(10)
     except:
         errorExit()
 
     exit()
 
 
-def answer(): # not finished
+def answer(): # not nearly finished
     driver.get('https://www.wg-gesucht.de/nachrichten.html')
+    try:
+        driver.find_element(By.CLASS_NAME, 'panel-body conversation_selected conversation_unread').click()
+    except:
+        driver.find_element(By.CLASS_NAME, 'panel-body conversation_selected ').click()
+    
+    
 
 
 while True:
     update_wgg()
     print('Last actualization at', time.localtime()[3], 'h', time.localtime()[4], 'min')
+    with open("log/log.txt", "a") as f:
+        print(int(time.localtime()[3]), int((time.localtime()[4])), file=f)
     time.sleep(20)
     
