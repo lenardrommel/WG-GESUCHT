@@ -1,5 +1,6 @@
 from numpy import random
 import numpy as np
+import urllib.request
 import time
 from selenium.webdriver.common.by import By
 from selenium import webdriver
@@ -29,6 +30,15 @@ driver.find_element(By.ID, "login_submit").click()
 time.sleep(1)
 
 
+def connected():
+    try:
+        urllib.request.urlopen('http://google.com')
+        return True
+    except:
+        print('There seems to be a problem with the internet connection, try again later.')
+        return False
+
+
 def reopenBrowser():
     driver = webdriver.Firefox()
     driver.maximize_window()
@@ -51,10 +61,10 @@ def exit():
 
 
 def update_wgg():
-    time.sleep(1)
+    time.sleep(5)
     try:
         driver.find_element(By.CLASS_NAME, "mdi.mdi-dots-vertical.mdi-20px.pull-right.cursor-pointer").click()
-        time.sleep(10)
+        time.sleep(2)
     except NoSuchElementException:
         errorExit()
     try:
@@ -64,7 +74,7 @@ def update_wgg():
         errorExit()
     try:
         driver.find_element(By.ID, "update_offer_nav").click()
-        time.sleep(10)
+        time.sleep(2)
     except:
         errorExit()
 
@@ -73,18 +83,29 @@ def update_wgg():
 
 def answer(): # not nearly finished
     driver.get('https://www.wg-gesucht.de/nachrichten.html')
-    try:
-        driver.find_element(By.CLASS_NAME, 'panel-body conversation_selected conversation_unread').click()
-    except:
-        driver.find_element(By.CLASS_NAME, 'panel-body conversation_selected ').click()
+    wait = WebDriverWait(driver, 10)
+
+    wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'conversation_list_item')))
+    conversations = driver.find_elements(By.CLASS_NAME, 'conversation_list_item')
+    for x in conversations:
+            x.click()
+            time.sleep(3)
+            message = driver.find_element(By.CLASS_NAME, 'row last_message_selector')
+            #wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'message_content message_text')))
+            print('True')
     
     
 
 
 while True:
-    update_wgg()
-    print('Last actualization at', time.localtime()[3], 'h', time.localtime()[4], 'min')
-    with open("log/log.txt", "a") as f:
-        print(int(time.localtime()[3]), int((time.localtime()[4])), file=f)
-    time.sleep(20)
+    if connected():
+        update_wgg()
+        print('Last actualization at', time.localtime()[3], 'h', time.localtime()[4], 'min')
+        with open("log/log.txt", "a") as f:
+            print(int(time.localtime()[3]), int((time.localtime()[4])), file=f)
+            time.sleep(900)
+            time.sleep(int(random.uniform(1, 10) * 90))
+    else:
+        while not connected():
+            time.sleep(45 * 60)
     
