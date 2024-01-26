@@ -1,5 +1,6 @@
 from numpy import random
 import numpy as np
+import pandas as pd
 import urllib.request
 import time
 import datetime
@@ -12,9 +13,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 
+
 # define access data
-pwd_id = np.loadtxt('user_data.csv', dtype='str')[0]
+pwd_id = np.loadtxt('../alt/user_data.csv', dtype='str')[0]
 pwd = np.loadtxt('user_data.csv', dtype='str')[1]
+
 
 
 driver = webdriver.Firefox(executable_path='geckodriver')

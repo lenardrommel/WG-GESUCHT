@@ -1,8 +1,4 @@
 {
-	"paths": {
-	},
-  "general": {
-    "test_mode": true,
-    "season": true
-  }
+  "email": "firstname.lastname@youremail.com",
+  "password": "yourchosenpassword"
 }
