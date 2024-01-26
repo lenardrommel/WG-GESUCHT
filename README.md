@@ -18,7 +18,16 @@ brew install firefox
 * Please consult a therapist
 
 ### Install geckodriver
-Then you have to install [geckodriver](https://stackoverflow.com/questions/41190989/how-do-i-install-geckodriver).
+Then you have to install [geckodriver](https://github.com/mozilla/geckodriver/releases).
+#### For Linux/Ubuntu:
+```sybase
+sudo apt install firefox-geckodriver
+```
+
+#### For Mac:
+```sybase
+brew install geckodriver
+```
 
 ### Environment Setup
 This project was implemented in Python 3.10. Here is a tutorial of [how to update python](https://ioflood.com/blog/update-python-step-by-step-guide/).
@@ -34,5 +43,6 @@ Activate environment
 conda activate wggesucht
 ```
 
+## 
 
 
