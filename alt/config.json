@@ -1,0 +1,8 @@
+{
+	"paths": {
+	},
+  "general": {
+    "test_mode": true,
+    "season": true
+  }
+}
