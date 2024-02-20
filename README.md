@@ -1,9 +1,9 @@
 # Welcome to WG-Gesucht Bot
 
 ## Note: 
-Currently WG-Gesucht-Bot is unfortunately not working anymore. I will release a working version as soon as I find the time.
+Currently, WG-Gesucht-Bot is unfortunately not working anymore. I will release a working version as soon as I find the time.
 
-This is a repository for a WG-Gesucht-Bot. It actualises your offer automatically.
+This is a repository for a WG-Gesucht-Bot. It updates your offer automatically.
 
 ## Installation and Prerequisites
 
