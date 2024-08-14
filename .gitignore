@@ -1,2 +1,4 @@
 *.json
 alt
+.DS_Store
+__pycache__
