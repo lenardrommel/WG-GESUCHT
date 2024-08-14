@@ -17,7 +17,7 @@ class Bot():
         self.mode = mode
         self.season = season
         self.waittime = waittime
-        self.driver = webdriver.Firefox(executable_path='geckodriver')
+        self.driver = webdriver.Firefox(executable_path='../src/geckodriver')
         self.pwd_id = pwd_id
         self.pwd = pwd
 

@@ -1,9 +1,7 @@
 # Welcome to WG-Gesucht Bot
 
-## Note: 
-Currently, WG-Gesucht-Bot is unfortunately not working anymore. I will release a working version as soon as I find the time.
+This bot automatically updates your listings on WG-Gesucht. It handles the login process, clicks the necessary buttons, and ensures your offers remain up-to-date.
 
-This is a repository for a WG-Gesucht-Bot. It updates your offer automatically.
 
 ## Installation and Prerequisites
 
@@ -32,20 +30,39 @@ sudo apt install firefox-geckodriver
 brew install geckodriver
 ```
 
-### Environment Setup
-This project was implemented in Python 3.10. Here is a tutorial of [how to update python](https://ioflood.com/blog/update-python-step-by-step-guide/).
+## Installation
 
-Create a new environment with:
-```sybase
-conda env create -file=envs/environment.yaml
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/yourusername/wg-gesucht-auto-updater.git
+    cd wg-gesucht-auto-updater
+    ```
+
+2. Install the required Python packages:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Create a `config.json` file in the root of the project directory with your WG-Gesucht login credentials:
+
+    ```json
+    {
+      "email": "your_email@example.com",
+      "password": "your_password"
+    }
+    ```
+
+## Usage
+
+You can run the script as follows:
+
+```bash
+python main.py
 ```
+If you want to debug the script, you can run it with the `--debug` flag:
 
-Activate environment
-
-```sybase
-conda activate wggesucht
+```bash
+python main.py --debug
 ```
-
-## 
-
-

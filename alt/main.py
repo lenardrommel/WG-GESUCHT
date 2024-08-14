@@ -10,17 +10,24 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.support.ui import WebDriverWait
+import json
 
 
 
 
 # define access data
-pwd_id = np.loadtxt('../alt/user_data.csv', dtype='str')[0]
-pwd = np.loadtxt('user_data.csv', dtype='str')[1]
+#pwd_id = np.loadtxt('../alt/user_data.csv', dtype='str')[0]
+#pwd = np.loadtxt('user_data.csv', dtype='str')[1]
+
+# load access data from config json
+with open('config.json') as f:
+    config = json.load(f)
+    pwd_id = config['id']
+    pwd = config['pwd']
 
 
 
-driver = webdriver.Firefox(executable_path='geckodriver')
+driver = webdriver.Firefox(executable_path='../src/geckodriver')
 #driver.maximize_window()
 
 
