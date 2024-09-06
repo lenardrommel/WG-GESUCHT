@@ -99,23 +99,24 @@ def update_wgg(wait_time):
     exit_script()
 
 
-def main(debug=False):
-    wait_time = 5 if debug else randint(1, 4) * 9
+def main(debug=False, sleep_time=10):
+    wait_time = sleep_time if debug else randint(1, 4) * 9
     click_cookies(driver)
     while True:
         if connected():
             update_wgg(wait_time)
             print('Last actualization at', datetime.datetime.today())
-            time.sleep(5 if debug else 300)
-            time.sleep(5 if debug else int(randint(1, 10) * 30))
+            time.sleep(wait_time if debug else 300)
+            time.sleep(wait_time if debug else int(randint(1, 10) * 30))
         else:
             while not connected():
-                time.sleep(5 if debug else 45 * 60)
+                time.sleep(wait_time if debug else 45 * 60)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="WG-Gesucht Update Script")
     parser.add_argument('--debug', action='store_true', help="Run in debug mode with reduced waiting times")
+    parser.add_argument('--sleep_time', type=int, help="Sleep time in seconds", default=10)
     args = parser.parse_args()
 
     try:
