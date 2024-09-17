@@ -21,6 +21,7 @@ def run_bot():
 
         # Sleep until the next run
         time.sleep(next_run)
+        print("Waking up and running the bot again.")
 
 if __name__ == "__main__":
     run_bot()
